@@ -1,0 +1,7 @@
+[package]
+name = "parco-xml-test"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+parco-xml = { version = "0.1.0", path = "../parco-xml" }
