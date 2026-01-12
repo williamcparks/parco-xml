@@ -9,6 +9,9 @@ use crate::{
 };
 
 impl<'a> Reader<'a> {
+    /// deserialize a key value attribute and error if there isn't one or is malformed
+    ///
+    /// if you want to parse the attr value into a type look at [`Reader::dexml`]
     pub fn attr(&mut self) -> Result<(&'a str, &'a str), DeXmlError> {
         self.append_path(AppendPath::GeneralAttr);
 
@@ -27,6 +30,9 @@ impl<'a> Reader<'a> {
         Ok((attr_name, attr_value))
     }
 
+    /// deserialize a key value attribute and if there isn't an attribute return [`None`]
+    ///
+    /// if you want to parse the attr value into a type look at [`Reader::dexml`]
     pub fn attr_opt(&mut self) -> Result<Option<(&'a str, &'a str)>, DeXmlError> {
         if self.lexer.peek('/') || self.lexer.peek('>') {
             return Ok(None);

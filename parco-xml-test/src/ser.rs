@@ -7,18 +7,20 @@ struct Request<'a> {
 xml! {
     ref Request;
 
-    /*
+    @ns {
+        soap = "uri:soap",
+        subns = "uri:subns",
+    }
+
     soap:Envelope {
-        soap:Body {
-            Request {
+        soap:Body soap:Id=(self.user_id) fixed="asdf" {
+            subns:Request {
                 UserID {
-                    (user_id)
+                    (self.user_id)
                 }
             }
-
         }
     }
-    */
 }
 
 pub fn ser() {

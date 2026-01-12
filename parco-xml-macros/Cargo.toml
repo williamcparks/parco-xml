@@ -2,6 +2,12 @@
 name = "parco-xml-macros"
 version = "0.1.0"
 edition = "2024"
+readme = "../README.md"
+license = "MIT"
+keywords = ["parco", "xml"]
+description = "Parco XML Macros"
+homepage = "https://github.com/williamcparks/parco-xml"
+repository = "https://github.com/williamcparks/parco-xml"
 
 [lib]
 proc-macro = true

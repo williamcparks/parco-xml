@@ -4,20 +4,28 @@ use thiserror::Error;
 
 use crate::de::Reader;
 
+/// a trait the allows types to deserialize themselves from xml
 pub trait DeXml<'de>: Sized {
+    /// deserialize from a xml source [`str`], automatically implemented for types once [`DeXml::dexml_reader`] is implemented
     fn dexml(xml: &'de str) -> Result<Self, DeXmlError> {
         let mut rdr = Reader::new(xml);
         Self::dexml_reader(&mut rdr)
     }
 
+    /// required method for [`DeXml`] trait. the reader provides useful parsing and lexing primitives for deserializing your type
     fn dexml_reader(reader: &mut Reader<'de>) -> Result<Self, DeXmlError>;
 }
 
+/// a error with a `path` from where in xml document the error happened and the entire xml document for reference
+/// along with a custom message
 #[derive(Debug, Error)]
 #[error("{message} @ `{path}`\n\n{xml}")]
 pub struct DeXmlError {
+    /// the message of what went wrong
     pub message: Cow<'static, str>,
+    /// where in the xml document
     pub path: String,
+    /// the xml document
     pub xml: Box<str>,
 }
 

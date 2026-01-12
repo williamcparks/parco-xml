@@ -91,7 +91,7 @@ dexml! {
 pub fn deser() {
     let src = "
         <soap:Envelope>
-            <soap:Body id=\"asdf\" soap:mustUnderstand=\"1\">
+            <soap:Body id=\"123\" soap:mustUnderstand=\"1\">
                 <Response>
                     <UserToken>
                         secret_token
@@ -99,7 +99,7 @@ pub fn deser() {
                     <Expires>
                         2025-01-01
                     </Expires>
-                </Response>
+                 </Response>
             </soap:Body>
         </soap:Envelope>
     ";

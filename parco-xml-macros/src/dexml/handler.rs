@@ -12,6 +12,7 @@ pub fn handler(input: Input) -> Result<TokenStream> {
     let inits = input.element.inits();
 
     Ok(quote! {
+        #[automatically_derived]
         impl<'de> ::parco_xml::DeXml<'de> for #user_type #lt {
             fn dexml_reader(reader: &mut ::parco_xml::de::Reader<'de>) -> ::core::result::Result<Self, ::parco_xml::DeXmlError> {
                 #(#visits)*

@@ -23,6 +23,7 @@ impl<'a> Reader<'a> {
         }
     }
 
+    /// inspect the next tag, can be used for parsing [`std::vec::Vec`]
     pub fn peek_tag(&mut self) -> Option<&'a str> {
         let mut lexer = self.lexer.clone();
 
