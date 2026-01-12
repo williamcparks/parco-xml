@@ -2,7 +2,7 @@
 name = "parco-xml"
 version = "0.1.1"
 edition = "2024"
-readme = "../README.md"
+readme = "README.md"
 license = "MIT"
 keywords = ["parco", "xml"]
 description = "Parco XML"
