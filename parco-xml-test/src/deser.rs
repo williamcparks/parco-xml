@@ -75,7 +75,7 @@ dexml! {
     ref Response;
 
     Envelope {
-        Body mustUnderstand="0" id=(body_id) {
+        Body mustUnderstand="1" id=(body_id) {
             Response {
                 UserToken {
                     (user_token)

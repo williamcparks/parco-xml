@@ -18,6 +18,7 @@ impl C14nElement {
         for child in self.children.iter() {
             match child {
                 C14nChild::Dynamic(el) => out.push(el.clone()),
+                C14nChild::Const(_) => {}
                 C14nChild::Element(el) => out.extend(el.args()),
             }
         }

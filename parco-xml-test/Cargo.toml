@@ -5,4 +5,4 @@ edition = "2024"
 publish = false
 
 [dependencies]
-parco-xml = { version = "0.1.0", path = "../parco-xml" }
+parco-xml = { version = "0.1.4", path = "../parco-xml" }

@@ -18,6 +18,9 @@ xml! {
                 UserID {
                     (self.user_id)
                 }
+                Const {
+                    "my constant"
+                }
             }
         }
     }

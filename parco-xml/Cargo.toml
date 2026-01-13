@@ -1,6 +1,6 @@
 [package]
 name = "parco-xml"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2024"
 readme = "README.md"
 license = "MIT"
@@ -12,5 +12,5 @@ repository = "https://github.com/williamcparks/parco-xml"
 [features]
 
 [dependencies]
-parco-xml-macros = { version = "0.1.3", path = "../parco-xml-macros" }
+parco-xml-macros = { version = "0.1.4", path = "../parco-xml-macros" }
 thiserror = "2.0.17"

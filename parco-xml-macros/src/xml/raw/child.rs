@@ -1,22 +1,24 @@
 use proc_macro2::TokenStream;
-use syn::{braced, parenthesized, token::Paren};
+use syn::{LitStr, braced, parenthesized, token::Paren};
 
 use crate::xml::{ns::NsSection, raw::RawElement};
 
 pub enum RawChild {
     Dynamic(TokenStream),
+    Const(LitStr),
     Element(RawElement),
 }
 
 impl RawChild {
     pub fn try_new(input: syn::parse::ParseStream, ns_section: &NsSection) -> syn::Result<Self> {
-        match input.peek(Paren) {
-            true => {
-                let section;
-                parenthesized!(section in input);
-                Ok(Self::Dynamic(section.parse()?))
-            }
-            false => Ok(Self::Element(RawElement::try_new(input, ns_section)?)),
+        if input.peek(Paren) {
+            let section;
+            parenthesized!(section in input);
+            Ok(Self::Dynamic(section.parse()?))
+        } else if input.peek(LitStr) {
+            Ok(Self::Const(input.parse()?))
+        } else {
+            Ok(Self::Element(RawElement::try_new(input, ns_section)?))
         }
     }
 
