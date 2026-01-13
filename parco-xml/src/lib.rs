@@ -12,3 +12,7 @@ pub mod de {
 
     pub use crate::dexml::{AppendPath, PeekedTag, Reader, TagEnd};
 }
+
+pub mod ser {
+    pub use crate::xml::{Conditional, Empty, List};
+}

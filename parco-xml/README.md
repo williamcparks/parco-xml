@@ -52,3 +52,11 @@ let res = Response::dexml(src).unwrap();
 
 println!("{res:?}");
 ```
+
+### Control Structures
+
+- Render Nothing: [Empty](crate::ser::Empty)
+
+- Render conditionally via option: [Conditional](crate::ser::Conditional)
+
+- Render many elements: [List](crate::ser::List)
