@@ -5,7 +5,7 @@ use syn::{Ident, LitStr};
 use crate::dexml::visits::VisitAttrs;
 
 pub enum Visit {
-    OpenTag(LitStr),
+    TillOpenTag(LitStr),
     CloseTag,
     AssertChildren,
     VisitAttrs(VisitAttrs),
@@ -18,7 +18,7 @@ pub enum Visit {
 impl Visit {
     pub fn print(&self) -> TokenStream {
         match self {
-            Self::OpenTag(tag) => quote! { reader.open_tag(#tag)?; },
+            Self::TillOpenTag(tag) => quote! { reader.till_open_tag(#tag)?; },
             Self::CloseTag => quote! { reader.close_tag()?; },
             Self::AssertChildren => quote! { reader.assert_children()?; },
             Self::VisitAttrs(attrs) => attrs.print(),

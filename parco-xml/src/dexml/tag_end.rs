@@ -10,6 +10,7 @@ use crate::{
 };
 
 /// the ending tag of an element i.e "\>" in "\<Element\>"
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum TagEnd {
     /// A self closing tag ending with \/\>. No children
     SelfClosing,

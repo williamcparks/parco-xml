@@ -8,7 +8,7 @@ use crate::{
 
 impl RawElement {
     pub fn visits(&self) -> Vec<Visit> {
-        let mut out = vec![Visit::OpenTag(self.tag.to_lit_str())];
+        let mut out = vec![Visit::TillOpenTag(self.tag.to_lit_str())];
 
         if let Some(visit_attrs) = VisitAttrs::new_opt(self.attrs.as_slice()) {
             out.push(Visit::VisitAttrs(visit_attrs));

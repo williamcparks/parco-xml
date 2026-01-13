@@ -50,6 +50,7 @@ impl<'a> Reader<'a> {
         self.parse_tag(Action::CloseTag)?;
         self.parse::<CloseAngle>(Action::CloseTag)?;
         self.exit_path();
+
         Ok(())
     }
 

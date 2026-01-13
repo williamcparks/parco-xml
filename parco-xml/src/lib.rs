@@ -10,5 +10,5 @@ pub use xml::Xml;
 pub mod de {
     #![doc = "useful deserialization types"]
 
-    pub use crate::dexml::{AppendPath, Reader, TagEnd};
+    pub use crate::dexml::{AppendPath, PeekedTag, Reader, TagEnd};
 }
