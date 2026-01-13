@@ -35,8 +35,16 @@ impl<'a> Reader<'a> {
         }
     }
 
+    /// if [`TagEnd::SelfClosing`] then this does nothing else parse elements till you find the ending tag, once you do parse it
+    pub fn till_close_infer_tag(&mut self, tag: &str, tag_end: TagEnd) -> Result<(), DeXmlError> {
+        match tag_end {
+            TagEnd::SelfClosing => Ok(()),
+            TagEnd::Normal => self.till_close_tag(tag),
+        }
+    }
+
     /// parse a block i.e "\<Element\>" to "\<\/Element>"
-    fn block(&mut self, tag: &str) -> Result<(), DeXmlError> {
+    pub fn block(&mut self, tag: &str) -> Result<(), DeXmlError> {
         self.open_tag(tag)?;
         let tag_end = self.tag_end()?;
 

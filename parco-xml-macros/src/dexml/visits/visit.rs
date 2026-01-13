@@ -10,9 +10,9 @@ pub enum Visit {
     AssertChildren,
     VisitAttrs(VisitAttrs),
     Vis(Ident),
-
+    Block(LitStr),
     TagEndSetup,
-    TagCloseInfer,
+    TagCloseInfer(LitStr),
 }
 
 impl Visit {
@@ -23,9 +23,9 @@ impl Visit {
             Self::AssertChildren => quote! { reader.assert_children()?; },
             Self::VisitAttrs(attrs) => attrs.print(),
             Self::Vis(id) => quote! { let #id = reader.visit()?; },
-
+            Self::Block(block) => quote! { reader.block(#block)?; },
             Self::TagEndSetup => quote! { let tag_end = reader.tag_end()?;  },
-            Self::TagCloseInfer => quote! { reader.tag_close_infer(tag_end)?; },
+            Self::TagCloseInfer(tag) => quote! { reader.till_close_infer_tag(#tag, tag_end)?; },
         }
     }
 

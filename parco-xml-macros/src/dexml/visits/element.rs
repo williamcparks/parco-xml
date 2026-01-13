@@ -8,6 +8,10 @@ use crate::{
 
 impl RawElement {
     pub fn visits(&self) -> Vec<Visit> {
+        if self.attrs.is_empty() && self.children.is_empty() {
+            return vec![Visit::Block(self.tag.to_lit_str())];
+        }
+
         let mut out = vec![Visit::TillOpenTag(self.tag.to_lit_str())];
 
         if let Some(visit_attrs) = VisitAttrs::new_opt(self.attrs.as_slice()) {
@@ -27,7 +31,7 @@ impl RawElement {
         if !self.children.is_empty() {
             out.push(Visit::CloseTag);
         } else {
-            out.push(Visit::TagCloseInfer);
+            out.push(Visit::TagCloseInfer(self.tag.to_lit_str()));
         }
 
         out
